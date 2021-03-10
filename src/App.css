@@ -9,14 +9,17 @@
   font-size: calc(10px + 2vmin);
   color: white;
 }
+.search-div {
+  margin-top: 20px;
+}
 .search-div input[type=text] {
   width: 80%;
   height: 50px;
   padding: 10px;
+  outline: none;
 }
 .search-div button {
   width: 5%;
   height: 40px;
   margin-left: 10px;
-
 }

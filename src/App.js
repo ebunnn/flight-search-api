@@ -1,7 +1,8 @@
 import React, {Component} from 'react'; 
 import './App.css';
 import Header from './Header';
-import Footer from './Footer.js';
+import Footer from './Footer';
+import Places from './Places';
 
 class App extends Component {
   constructor() {
@@ -18,7 +19,6 @@ class App extends Component {
   }
   handleSubmit(event) {
     event.preventDefault()
-    console.log(event)
     this.apiCall(this.state.query)
     }
   async apiCall() {
@@ -32,7 +32,9 @@ class App extends Component {
     }
     let response = await fetch("https://skyscanner-skyscanner-flight-search-v1.p.rapidapi.com/apiservices/autosuggest/v1.0/US/USD/en-US/?query=" + this.state.query, reqOptions)
     response = await response.json()
-    console.log(response.Places)
+    this.setState({eachPlace: response.Places})
+    console.log(this.state.eachPlace)
+    // console.log(response.Places)
   }
   render() {
     return (
@@ -44,7 +46,10 @@ class App extends Component {
             <input type="text" placeholder="Search For the Cheapest Flights" name="search" onChange={(e)=>this.handleOnChange(e)} value={this.state.query} required/>
             <button type="submit">Submit</button>
           </form>
-          <h1 style={{color: "black"}}>{this.state.query}</h1>
+          {/* <h1 style={{color: "black"}}>{this.state.query}</h1> */}
+        </div>
+        <div>
+          <Places places={this.state.eachPlace}/>
         </div>
         </header>
         <Footer footercontent="Thank You for Using My Flight Search Application"/>
