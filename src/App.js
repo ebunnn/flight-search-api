@@ -2,14 +2,18 @@ import React, {Component} from 'react';
 import './App.css';
 import Header from './Header';
 import Footer from './Footer';
-import Places from './Places';
+import BrowseDates from './BrowseDates';
 
 class App extends Component {
   constructor() {
     super()
     this.state = {
       eachPlace: [],
-      query: ""
+      query: "",
+      currency: "",
+      eachCurrency: [],
+      eachDate: [],
+      eachQuote: []
     }
     this.handleSubmit = this.handleSubmit.bind(this)
     this.apiCall = this.apiCall.bind(this)
@@ -30,12 +34,19 @@ class App extends Component {
 	        "useQueryString": true
         }
     }
-    let response = await fetch("https://skyscanner-skyscanner-flight-search-v1.p.rapidapi.com/apiservices/autosuggest/v1.0/US/USD/en-US/?query=" + this.state.query, reqOptions)
+    let response = await fetch("https://skyscanner-skyscanner-flight-search-v1.p.rapidapi.com/apiservices/browsedates/v1.0/US/USD/en-US/SFO-sky/LAX-sky/2021-03-21/?query=" + this.state.query, reqOptions)
     response = await response.json()
     this.setState({eachPlace: response.Places})
+    this.setState({eachCurrency: response.Currencies})
+    this.setState({eachDate: response.Dates})
+    this.setState({eachQuote: response.Quotes})
     console.log(this.state.eachPlace)
+    console.log(this.state.eachCurrency)
+    console.log(this.state.eachDate)
+    console.log(this.state.eachQuote)
     // console.log(response.Places)
   }
+
   render() {
     return (
       <div className="App">
@@ -46,13 +57,12 @@ class App extends Component {
             <input type="text" placeholder="Search For the Cheapest Flights" name="search" onChange={(e)=>this.handleOnChange(e)} value={this.state.query} required/>
             <button type="submit">Submit</button>
           </form>
-          {/* <h1 style={{color: "black"}}>{this.state.query}</h1> */}
         </div>
         <div>
-          <Places places={this.state.eachPlace}/>
+          <BrowseDates places={this.state.eachPlace} />
         </div>
         </header>
-        <Footer footercontent="Thank You for Using My Flight Search Application"/>
+        <Footer footercontent="Flight Search Application"/>
       </div>
     );
   }  

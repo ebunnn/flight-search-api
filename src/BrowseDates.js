@@ -1,13 +1,13 @@
 import React from 'react';
-import './css/Places.css';
+import './css/BrowseDates.css';
 
-function Places(props) {
+function browseDates(props) {
     return(
         <div>
             <div className="airport-labels">
                 {props.places.map(place => {
                     return(
-                        <div id={place.PlaceId}>
+                        <div key={place.PlaceId}>
                             <h5>Airport Name(PlaceName): {place.PlaceName}</h5>
                             <h5>Airport ID (PlaceID): {place.PlaceId}</h5>
                             <h5>Country(CountryName): {place.CountryName}</h5>
@@ -24,4 +24,4 @@ function Places(props) {
     )
 }
 
-export default Places;
+export default browseDates;
