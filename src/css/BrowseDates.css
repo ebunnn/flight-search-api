@@ -1,11 +1,19 @@
 .airport-labels {
     color: black;
-    font-size: 12px;
-    width: 25%;
+    margin-top: 50px;
+    margin-left: 60px;
+    /* font-size: 12px; */
+    /* width: 25%;
     padding: 10px;
     padding-top: 5px;
-    text-align: left;
-    border: 2px solid white;
+    text-align: left; */
+    /* border: 2px solid white;
     box-shadow: 5px 8px 16px 7px rgba(0,0,0,0.2);
-    margin: 30px;
+    margin: 30px; */
+}
+table, th, td {
+    border: 1px solid black;
+}
+td {
+    font-size: 20px;
 }
