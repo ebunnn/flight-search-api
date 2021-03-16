@@ -33,3 +33,28 @@
   display: inline-flex;
   margin-left: 130px;
 }
+
+@media only screen and (max-width : 1290px) {
+  .search-params {
+    display: inline-flex;
+    margin-left: 67px;
+  }
+
+}
+@media only screen and (max-width : 1224px) {
+  .search-params {
+    margin-left: 20px;
+  }
+
+}
+@media only screen and (max-width : 1179px) {
+  .search-params {
+    margin-left: -9px;
+  }
+
+}
+@media only screen and (max-width : 1080px) {
+  .search-div button {
+    width: 7%;
+  }  
+}

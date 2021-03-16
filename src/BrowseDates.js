@@ -1,7 +1,10 @@
 import React from 'react';
 import './css/BrowseDates.css';
 
+
+
 function browseDates(props) {
+    // const priceFix = carrier.CarrierId === quote.OutboundLeg.CarrierIds ? 
     return(
         <div>
             <table className="airport-labels">
@@ -31,18 +34,24 @@ function browseDates(props) {
                                 <table className="airport-labels2">
                                     <thead>
                                         <tr>
-                                            <th>Airline</th>
+                                            <th>Available Airlines</th>
                                             <th>Price</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                     {props.carriers.map(carrier => {
                                             return(
-                                                <tr>
+                                                <tr key={carrier.CarrierId}>
                                                      <td>{carrier.Name}</td>
                                                 {props.quotes.map(quote => {
                                                     return(  
-                                                        <td>${quote.MinPrice}</td>                                                                                        
+                                                        <td>{props.currencies.map(currency => {
+                                                            return(  
+                                                                <td>{currency.Symbol}</td>
+                                                                                                                                                        
+                                                                )
+                                                        })}{quote.MinPrice}</td> // not sure why the prices are showing as two prices per airline. should be one price per airline :/
+                                                                                                                                                
                                                         )
                                                 })}
                                                  </tr>
@@ -51,35 +60,6 @@ function browseDates(props) {
                                             })}
                                     </tbody>
                                 </table>
-                {/* <table className="airport-labels">
-                            <thead>
-                                <tr>
-                                    <th>Airport Name</th>
-                                    <th>Code</th> 
-                                    <th>Country</th>
-                                    <th>City</th>
-                                    <th>City ID</th>
-                                </tr>
-                            </thead>
-                                                    
-                            <tbody>
-                                {props.places.map(place => {
-                                    return(        
-                                        <div key={place.PlaceId}>
-                                            <tr> 
-                                                <td>(PlaceName): {place.Name}</td>
-                                                <td>(SkyscannerCode): {place.SkyscannerCode}-sky</td>
-                                                <td>(CountryName): {place.CountryName}</td>
-                                                <td>(City Name): {place.CityName}</td>
-                                                <td>(City ID): {place.CityId}</td> 
-                                                <h5>Country ID: {place.CountyId}</h5>
-                                                <h5>Region ID: {place.RegionId}</h5> 
-                                            </tr>           
-                                        </div>
-                                    )
-                                })}
-                            </tbody>
-                    </table> */}
             </div>
         )
 }

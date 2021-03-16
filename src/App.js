@@ -99,15 +99,15 @@ class App extends Component {
  
         <div className="search-div" onSubmit={this.handleSubmit}>
           <form onSubmit={this.handleSubmit}>
-            <input type="text" placeholder="Search For the Cheapest Flights" name="search" onChange={(e)=>this.handleOnChange(e)} value={this.state.query} required/>
+            <input type="text" placeholder="Search any State" name="search" onChange={(e)=>this.handleOnChange(e)} value={this.state.query} required/>
             <button type="submit">Submit</button>
           </form>
         </div>
         <div>
-          <BrowseDates places={this.state.eachPlace} quotes={this.state.eachQuote} carriers={this.state.eachCarrier} />
+          <BrowseDates places={this.state.eachPlace} quotes={this.state.eachQuote} carriers={this.state.eachCarrier} currencies={this.state.eachCurrency}/>
         </div>
         </header>
-        {/* <Footer footercontent="Flight Search Application"/> */}
+        <Footer footercontent="Flight Search Application"/>
       </div>
     );
     } else {
