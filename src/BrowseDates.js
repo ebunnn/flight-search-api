@@ -23,13 +23,34 @@ function browseDates(props) {
                                     <td>{place.CountryName}</td>
                                     <td>{place.CityName}</td>
                                     <td>{place.CityId}</td> 
-                                    {/* <h5>Country ID: {place.CountyId}</h5>
-                                    <h5>Region ID: {place.RegionId}</h5> */}    
                                 </tr>   
-                           )
+                            )
                         })}
                 </tbody>
             </table>
+                                <table className="airport-labels2">
+                                    <thead>
+                                        <tr>
+                                            <th>Airline</th>
+                                            <th>Price</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    {props.carriers.map(carrier => {
+                                            return(
+                                                <tr>
+                                                     <td>{carrier.Name}</td>
+                                                {props.quotes.map(quote => {
+                                                    return(  
+                                                        <td>${quote.MinPrice}</td>                                                                                        
+                                                        )
+                                                })}
+                                                 </tr>
+                                                                        
+                                                                )
+                                            })}
+                                    </tbody>
+                                </table>
                 {/* <table className="airport-labels">
                             <thead>
                                 <tr>
