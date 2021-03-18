@@ -25,7 +25,14 @@ td {
     margin-top: 50px;
     margin-left: 60px;
 }
-
+.airport-labels3 {
+    position: absolute;
+    right: 20%;
+    top: 55%;
+    color: black;
+    margin-top: 50px;
+    margin-left: 60px;
+}
 @media only screen and (max-width : 1290px) {
     .airport-labels2 {
         left: 0%;

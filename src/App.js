@@ -18,11 +18,16 @@ class App extends Component {
       eachCarrier: [],
       eachDate: [],
       eachQuote: [],
-      eachCurrency: []
+      eachCurrency: [],
+      carrierList: [],
+      quotesList: [],
+      carrierNameList: [],
+      error: null
     }
     this.handleSubmit = this.handleSubmit.bind(this)
     this.apiCall = this.apiCall.bind(this)
     this.handleCurrency = this.handleCurrency.bind(this) 
+
   }
   handleOnChange(event) {
     this.setState({query: event.target.value})
@@ -65,14 +70,26 @@ class App extends Component {
     this.setState({eachCarrier: response.Carriers})
     this.setState({eachDate: response.Dates})
     this.setState({eachQuote: response.Quotes})
+    this.setState({carrierList: response.Carriers})
     //console.log(this.state.eachPlace)
     //console.log(this.state.eachCarrier)
     //console.log(this.state.eachDate)
+    //console.log(this.state.eachQuote);
     console.log(this.state.eachQuote)
+    console.log(this.state.eachCarrier)
+    
   }
 
+
   render() {
-    if (this.state.apiDidNotWork === false) {  
+    //console.log(response)
+    // if ({response}) {  
+    //   return (
+    //     <div>
+    //       Error: Sorry this failed
+    //     </div>
+    //   )
+    // }
     return (
       <div className="App">
         <header className="App-header">
@@ -104,15 +121,15 @@ class App extends Component {
           </form>
         </div>
         <div>
-          <BrowseDates places={this.state.eachPlace} quotes={this.state.eachQuote} carriers={this.state.eachCarrier} currencies={this.state.eachCurrency}/>
+          <BrowseDates places={this.state.eachPlace} quotes={this.state.eachQuote} carriers={this.state.eachCarrier} currencies={this.state.eachCurrency} carrierList={this.state.carrierList} 
+          quotesList={this.state.quotesList} carrierNameList={this.state.carrierNameList}/>
         </div>
         </header>
         <Footer footercontent="Flight Search Application"/>
       </div>
     );
-    } else {
-    }
-  }  
+     
+  }
   }
 
 export default App;
