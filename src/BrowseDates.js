@@ -3,14 +3,12 @@ import './css/BrowseDates.css';
 
 
 
-function browseDates(props) {
-   
+function browseDates(props) {   
     const data = []
     for (let i = 0; i < props.quotes.length; i++){
-        data.push(Number(props.quotes[i]["MinPrice"]))
-       
-        
+        data.push(Number(props.quotes[i]["MinPrice"]))    
     }
+    const minNum = Math.min(...data);
     function minNumFunc(quoteParam) {
         if (quoteParam === minNum) {
             return (
@@ -21,15 +19,11 @@ function browseDates(props) {
                 <td>{quoteParam}</td>
             )
         }       
-    }
-
-    const minNum = Math.min(...data);
-    console.log(Math.min(...data));
-    
-
+    }  
+    console.log(minNum)
     return(
         <div>
-            <table className="airport-labels">
+            <table className="airport-table">
                 <thead>
                     <tr>
                         <th>Airport Name</th>
@@ -53,7 +47,7 @@ function browseDates(props) {
                         })}
                 </tbody>
             </table>
-                                <table className="airport-labels2">
+                                <table className="airport-table2">
                                     <thead>
                                         <tr>
                                             <th>Available Airlines</th>        
@@ -64,27 +58,13 @@ function browseDates(props) {
                                             return(
                                                 <tr key={carrier.CarrierId}>
                                                      <td>{carrier.Name}</td>
-                                                {/* {props.quotes.map(quote => {
-                                                    return(  
-                                                        <td>{props.currencies.map(currency => {
-                                                            return(  
-                                                                <td>{currency.Symbol}</td>                                                                                 
-                                                                )
-                                                        })}{quote.MinPrice}</td> // not sure why the prices are showing as two prices per airline. should be one price per airline :/
-                                                                                                                                                
-                                                        )
-                                                })}
-                                                <td>{cheapestPrice}</td> */}
-                                                 </tr>
-                                                                        
-                                                                )
+                                                </tr>                                   
+                                            )
                                             })}
                                     </tbody>
-                                </table>
+                                </table>                      
 
-                                
-
-                                <table className="airport-labels3">
+                                <table className="airport-table3">
                                     <thead>
                                         <tr>
                                             <th>Price</th>                 
@@ -99,12 +79,8 @@ function browseDates(props) {
                                                                 <td>{currency.Symbol}</td>                                                                                 
                                                                 )
                                                         })}{minNumFunc(quote.MinPrice)}</td>
-                                                        
-                                                        
-
-                                                         </tr>
-                                                         // not sure why the prices are showing as two prices per airline. should be one price per airline :/
-                                                                                                                                                
+                                                        {console.log(minNumFunc(quote.MinPrice))}
+                                                         </tr>                                                                                  
                                                         )
                                                 })}
                                         

@@ -8,26 +8,21 @@ class App extends Component {
   constructor() {
     super()
     this.state = {
-      apiDidNotWork: false,
       eachPlace: [],
       query: "",
       currency: "USD",
       destination: "LAX-sky",
       location: "SFO-sky",
       outboundDate: "2021-03-21",
+      inboundDate: "2021-04",
       eachCarrier: [],
       eachDate: [],
       eachQuote: [],
       eachCurrency: [],
-      carrierList: [],
-      quotesList: [],
-      carrierNameList: [],
-      error: null
     }
     this.handleSubmit = this.handleSubmit.bind(this)
     this.apiCall = this.apiCall.bind(this)
     this.handleCurrency = this.handleCurrency.bind(this) 
-
   }
   handleOnChange(event) {
     this.setState({query: event.target.value})
@@ -44,6 +39,9 @@ class App extends Component {
   handleOutboundDate(event) {
     this.setState({outboundDate: event.target.value})
   }
+  handleInboundDate(event) {
+    this.setState({inboundDate: event.target.value})
+  }
   handleSubmit(event) {
     event.preventDefault()
     this.apiCall(this.state.query)
@@ -59,10 +57,11 @@ class App extends Component {
         }
     }
     let response = await fetch("https://skyscanner-skyscanner-flight-search-v1.p.rapidapi.com/apiservices/browsedates/v1.0/US/"
-     + this.state.currency + "/" + "en-US/" 
+     + this.state.currency + "/en-US/" 
      + this.state.location + "/" 
      + this.state.destination + "/"
-     + this.state.outboundDate 
+     + this.state.outboundDate + "/" 
+     + this.state.inboundDate
      + "/?query=" + this.state.query, reqOptions)
     response = await response.json()
     this.setState({eachPlace: response.Places})
@@ -70,31 +69,14 @@ class App extends Component {
     this.setState({eachCarrier: response.Carriers})
     this.setState({eachDate: response.Dates})
     this.setState({eachQuote: response.Quotes})
-    this.setState({carrierList: response.Carriers})
-    //console.log(this.state.eachPlace)
-    //console.log(this.state.eachCarrier)
-    //console.log(this.state.eachDate)
-    //console.log(this.state.eachQuote);
-    console.log(this.state.eachQuote)
-    console.log(this.state.eachCarrier)
-    
+    console.log(this.state.eachQuote)  
   }
-
-
   render() {
-    //console.log(response)
-    // if ({response}) {  
-    //   return (
-    //     <div>
-    //       Error: Sorry this failed
-    //     </div>
-    //   )
-    // }
     return (
       <div className="App">
         <header className="App-header">
         <Header title="Airport Flight Search"/>
-        <h4 style={{color: "red"}}>Please Fill Out These Inputs Before Submitting</h4>
+        <h4 style={{color: "red"}}> We Have Put Some Sample Inputs but You Can Change Them. Please Fill Out These Inputs Before Submitting <br/> * (Red Price = Cheapest)</h4>
         <div className="search-params">
             <form className="currency-search" onSubmit={this.handleSubmit}>
             <label>Currency (ex: USD)  </label>
@@ -106,11 +88,15 @@ class App extends Component {
             </form>
             <form className="currency-search" onSubmit={this.handleSubmit}>
             <label> Current Location (ex: SFO-sky)  </label>
-              <input type="text" name="destination" onChange={(e)=>this.handleLocation(e)} value={this.state.location} required/>
+              <input type="text" name="location" onChange={(e)=>this.handleLocation(e)} value={this.state.location} required/>
             </form>
             <form className="currency-search" onSubmit={this.handleSubmit}>
             <label>Outbound Date (ex: 2021-03-21)  </label>
-              <input type="text" name="destination" onChange={(e)=>this.handleOutboundDate(e)} value={this.state.outboundDate} required/>
+              <input type="text" name="outbound-date" onChange={(e)=>this.handleOutboundDate(e)} value={this.state.outboundDate} required/>
+            </form>
+            <form className="currency-search" onSubmit={this.handleSubmit}>
+            <label>Inbound Date (ex: 2021-04)  </label>
+              <input type="text" name="inbound-date" onChange={(e)=>this.handleInboundDate(e)} value={this.state.inboundDate} required/>
             </form>
         </div>
  
@@ -121,8 +107,7 @@ class App extends Component {
           </form>
         </div>
         <div>
-          <BrowseDates places={this.state.eachPlace} quotes={this.state.eachQuote} carriers={this.state.eachCarrier} currencies={this.state.eachCurrency} carrierList={this.state.carrierList} 
-          quotesList={this.state.quotesList} carrierNameList={this.state.carrierNameList}/>
+          <BrowseDates places={this.state.eachPlace} quotes={this.state.eachQuote} carriers={this.state.eachCarrier} currencies={this.state.eachCurrency}  />
         </div>
         </header>
         <Footer footercontent="Flight Search Application"/>

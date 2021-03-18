@@ -1,15 +1,7 @@
-.airport-labels {
+.airport-table {
     color: black;
     margin-top: 50px;
     margin-left: 60px;
-    /* font-size: 12px; */
-    /* width: 25%;
-    padding: 10px;
-    padding-top: 5px;
-    text-align: left; */
-    /* border: 2px solid white;
-    box-shadow: 5px 8px 16px 7px rgba(0,0,0,0.2);
-    margin: 30px; */
 }
 table, th, td {
     border: 1px solid black;
@@ -17,26 +9,25 @@ table, th, td {
 td {
     font-size: 20px;
 }
-.airport-labels2 {
+.airport-table2 {
     position: absolute;
-    right: 10%;
+    right: 28%;
     top: 55%;
     color: black;
     margin-top: 50px;
     margin-left: 60px;
 }
-.airport-labels3 {
+.airport-table3 {
     position: absolute;
-    right: 20%;
+    right: 21%;
     top: 55%;
     color: black;
     margin-top: 50px;
     margin-left: 60px;
 }
 @media only screen and (max-width : 1290px) {
-    .airport-labels2 {
+    .airport-table2 {
         left: 0%;
         top: 77%;
-    }
-    
+    }  
   }
