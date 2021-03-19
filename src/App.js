@@ -8,11 +8,11 @@ class App extends Component {
   constructor() {
     super()
     this.state = {
-      eachPlace: [],
+      eachPlace: [], //empty arrays to put the information from api
       query: "",
       currency: "USD",
       destination: "LAX-sky",
-      location: "SFO-sky",
+      location: "SFO-sky",       // filled in parameters that can be changed on the app
       outboundDate: "2021-03-21",
       inboundDate: "2021-04",
       eachCarrier: [],
@@ -25,7 +25,7 @@ class App extends Component {
     this.handleCurrency = this.handleCurrency.bind(this) 
   }
   handleOnChange(event) {
-    this.setState({query: event.target.value})
+    this.setState({query: event.target.value}) // Setting the state for each parameters so it can change everytime the user changes it
   }
   handleCurrency(event) {
     this.setState({currency: event.target.value})
@@ -44,7 +44,7 @@ class App extends Component {
   }
   handleSubmit(event) {
     event.preventDefault()
-    this.apiCall(this.state.query)
+    this.apiCall(this.state.query) // handling the submit button by letting the api call function accept the query
     }
 
   async apiCall() {
@@ -56,7 +56,7 @@ class App extends Component {
 	        "useQueryString": true
         }
     }
-    let response = await fetch("https://skyscanner-skyscanner-flight-search-v1.p.rapidapi.com/apiservices/browsedates/v1.0/US/"
+    let response = await fetch("https://skyscanner-skyscanner-flight-search-v1.p.rapidapi.com/apiservices/browsedates/v1.0/US/"  // concatenation of parameters
      + this.state.currency + "/en-US/" 
      + this.state.location + "/" 
      + this.state.destination + "/"
@@ -64,12 +64,11 @@ class App extends Component {
      + this.state.inboundDate
      + "/?query=" + this.state.query, reqOptions)
     response = await response.json()
-    this.setState({eachPlace: response.Places})
+    this.setState({eachPlace: response.Places}) // setting these states to place the json data into arrays 
     this.setState({eachCurrency: response.Currencies})
     this.setState({eachCarrier: response.Carriers})
     this.setState({eachDate: response.Dates})
-    this.setState({eachQuote: response.Quotes})
-    console.log(this.state.eachQuote)  
+    this.setState({eachQuote: response.Quotes}) 
   }
   render() {
     return (

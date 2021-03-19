@@ -5,16 +5,16 @@ import './css/BrowseDates.css';
 
 function browseDates(props) {   
     const data = []
-    for (let i = 0; i < props.quotes.length; i++){
+    for (let i = 0; i < props.quotes.length; i++){ // for loop to add all the prices of the flights into an empty array
         data.push(Number(props.quotes[i]["MinPrice"]))    
     }
-    const minNum = Math.min(...data);
-    function minNumFunc(quoteParam) {
+    const minNum = Math.min(...data); // grabbing the cheapest price from the array of prices
+    function minNumFunc(quoteParam) { // turns the cheapest price into a red color. I call this function in line 80 and add "quote.MinPrice" as the parameter. "quote.MinPrice" gives each price in a quote 
         if (quoteParam === minNum) {
             return (
                     <td style={{color: "red"}}>{quoteParam}</td>
             )
-        } else {
+        } else {                      // if it's not the cheapest price, just return the price in the regular color
             return (
                 <td>{quoteParam}</td>
             )
@@ -77,8 +77,7 @@ function browseDates(props) {
                                                             return(  
                                                                 <td>{currency.Symbol}</td>                                                                                 
                                                                 )
-                                                        })}{minNumFunc(quote.MinPrice)}</td>
-                                                        {console.log(minNumFunc(quote.MinPrice))}
+                                                        })}{minNumFunc(quote.MinPrice)}</td>    
                                                          </tr>                                                                                  
                                                         )
                                                 })}
