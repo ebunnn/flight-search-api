@@ -7,3 +7,14 @@
     top: 170%;
     margin-top: 100px;
 }
+
+@media only screen and (max-width : 1290px) {
+    .footer-content {
+        top: 180%
+    }
+  }
+@media only screen and (max-width : 1149px) {
+    .footer-content {
+        top: 200%;
+    }
+  }

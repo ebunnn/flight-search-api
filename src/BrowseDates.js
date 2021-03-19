@@ -20,13 +20,12 @@ function browseDates(props) {
             )
         }       
     }  
-    console.log(minNum)
     return(
         <div>
             <table className="airport-table">
                 <thead>
                     <tr>
-                        <th>Airport Name</th>
+                        <th>Airport Names</th>
                         <th>Code</th> 
                         <th>Country</th>
                         <th>City</th>
@@ -67,7 +66,7 @@ function browseDates(props) {
                                 <table className="airport-table3">
                                     <thead>
                                         <tr>
-                                            <th>Price</th>                 
+                                            <th>Prices</th>                 
                                         </tr>
                                     </thead>
                                     <tbody>

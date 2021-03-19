@@ -51,7 +51,11 @@
   .search-params {
     margin-left: -9px;
   }
-
+}
+@media only screen and (max-width : 1153px) {
+  .search-params {
+    margin-left: -9px;
+  }
 }
 @media only screen and (max-width : 1080px) {
   .search-div button {
